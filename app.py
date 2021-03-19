@@ -31,7 +31,7 @@ def main():
 
 @app.route('/app')
 def weather():
-    return render_template('app.html', ip=ip, city=city, country_code=country, lat=latlong[0], long=latlong[1], climate=climate, wind_speed=wind_speed, wind_degree=wind_degree, humidity=humidity)
+    return render_template('app.html', ip=request.remote_addr, city=city, country_code=country, lat=latlong[0], long=latlong[1], climate=climate, wind_speed=wind_speed, wind_degree=wind_degree, humidity=humidity)
 
 
 @app.route('/map')
