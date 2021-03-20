@@ -12,7 +12,7 @@ data = json.loads(ipinfo)
 #ip = data['ip']
 #ip = socket.gethostbyname(socket.gethostname())
 #ip = request.environ['HTTP_X_REAL_IP']
-ip = request.headers.getlist("X-Forwarded-For")[0]
+ip = request.headers.getlist("X-Forwarded-For").split(',')[0]
 
 city = data['city']
 region = data['region']
