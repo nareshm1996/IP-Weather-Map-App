@@ -9,7 +9,11 @@ ipinfo = get('https://ipinfo.io/').text
 
 data = json.loads(ipinfo)
 
-ip = data['ip']
+#ip = data['ip']
+if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
+        ip = request.environ['REMOTE_ADDR']
+else:
+        ip = request.environ['HTTP_X_FORWARDED_FOR']
 
 city = data['city']
 region = data['region']
@@ -31,7 +35,7 @@ def main():
 
 @app.route('/app')
 def weather():
-    return render_template('app.html', ip=request.remote_addr, city=city, country_code=country, lat=latlong[0], long=latlong[1], climate=climate, wind_speed=wind_speed, wind_degree=wind_degree, humidity=humidity)
+    return render_template('app.html', ip= ip, city=city, country_code=country, lat=latlong[0], long=latlong[1], climate=climate, wind_speed=wind_speed, wind_degree=wind_degree, humidity=humidity)
 
 
 @app.route('/map')
