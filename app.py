@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, redirect, socket
+from flask import Flask, request, jsonify, render_template, redirect
 from requests import get
 import json, folium
 
