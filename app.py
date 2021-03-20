@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, redirect
+from flask import Flask, request, jsonify, render_template, redirect, socket
 from requests import get
 import json, folium
 
@@ -9,7 +9,8 @@ ipinfo = get('https://ipinfo.io/').text
 
 data = json.loads(ipinfo)
 
-ip = data['ip']
+#ip = data['ip']
+ip = socket.gethostbyname(socket.gethostname())
 
 city = data['city']
 region = data['region']
