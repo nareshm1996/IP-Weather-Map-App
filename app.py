@@ -10,7 +10,11 @@ ipinfo = get('https://ipinfo.io/').text
 data = json.loads(ipinfo)
 
 #ip = data['ip']
-ip = socket.gethostbyname(socket.gethostname())
+#ip = socket.gethostbyname(socket.gethostname())
+if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
+	ip= request.environ['REMOTE_ADDR']
+else:
+	ip= request.environ['HTTP_X_FORWARDED_FOR']
 
 city = data['city']
 region = data['region']
