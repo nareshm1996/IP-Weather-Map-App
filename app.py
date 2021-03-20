@@ -9,11 +9,11 @@ ipinfo = get('https://ipinfo.io/').text
 
 data = json.loads(ipinfo)
 
-#ip = data['ip']
+ip = data['ip']
 if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
-        ip = request.environ['REMOTE_ADDR']
+       print(request.environ['REMOTE_ADDR'])
 else:
-        ip = request.environ['HTTP_X_FORWARDED_FOR']
+       print(request.environ['HTTP_X_FORWARDED_FOR'])
 
 city = data['city']
 region = data['region']
